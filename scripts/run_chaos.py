@@ -15,6 +15,10 @@ def main() -> None:
     metrics = run_simulation(config, load_queries())
     metrics.write_json(args.out)
     print(f"wrote {args.out}")
+    if args.out.endswith(".json"):
+        csv_path = args.out[:-5] + ".csv"
+        metrics.write_csv(csv_path)
+        print(f"wrote {csv_path}")
 
 
 if __name__ == "__main__":
